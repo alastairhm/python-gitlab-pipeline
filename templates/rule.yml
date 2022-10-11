@@ -1,0 +1,17 @@
+# {{deploy_env}} rules
+.nomad-plan-{{deploy_env}}-rules:
+  rules:
+    - if: $VERSION && $DEPLOY_ENV == "{{deploy_env}}" && $TIER == "app"
+      variables:
+        NOMAD_VAR_tls_common_name: "test.${PROJECT}.${ENVIRONMENT}.${DOMAIN}"
+        NOMAD_VAR_alt_names: '[ "test.{{deploy_env}}.internal", "test2.{{deploy_env}}.internal" ]'
+
+.nomad-deploy-{{deploy_env}}-rules:
+  rules:
+    - if: $VERSION && $DEPLOY_ENV == "{{deploy_env}}" && $TIER == "app"
+      variables:
+        NOMAD_VAR_tls_common_name: "test.${PROJECT}.${ENVIRONMENT}.${DOMAIN}"
+        NOMAD_VAR_alt_names: '[ "test.{{deploy_env}}.internal", "test2.{{deploy_env}}.internal" ]'
+      when: manual
+# {{deploy_env}} rules
+
