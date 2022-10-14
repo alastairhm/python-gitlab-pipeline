@@ -5,6 +5,7 @@ from os import environ
 import fire
 from jinja2 import Environment, FileSystemLoader
 
+
 class Generate:
     """Generate Pipeline YAML from a template"""
 
@@ -19,7 +20,7 @@ class Generate:
         print(self.template_dir)
         print(self.template_file)
 
-    def generate(self, environments , filename="generated_rules.yml"):
+    def generate(self, environments, filename="generated_rules.yml"):
         """Generate Gitlab Pipeline file from template"""
         self.template = self.environment.get_template(self.template_file)
 
@@ -31,6 +32,7 @@ class Generate:
         with open(filename, mode="w") as pipe:
             pipe.write(pipeline)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     fire.Fire(Generate)
